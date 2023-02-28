@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Geuss Color</title>
+</head>
+<body>
+
+  <h1>Guess The Color!</h1>
+
+  <div class="boxes">
+    <!-- box1 -->
+    <div>
+      <h2>Random Color</h2>
+      <div class="boxOne" id="boxOne"></div>
+    </div>
+
+    <!-- box2 -->
+    <div>
+      <h2>Your Guess</h2>
+      <div class="boxTwo" id="boxTwo"></div>
+    </div>
+  </div>
+
+  <!-- Red color  -->
+  <div class="Red">
+    <div class="colors">
+      <span style="margin: 0;">Red:</span>
+      <span>0</span>
+      <button class="redmin">-</button>
+      <input class="redcolorvalue" type="range" value="255" min="0" max="255">
+      <button class="redplus">+</button>
+      <span>255</span>
+      <span>|</span>
+      <span id="slidervaluered">255</span>
+    </div>
+  </div>
+
+  <!-- Green Color -->
+  <div class="Green">
+    <div class="colors">
+      <span style="margin: 0;">Green:</span>
+      <span>0</span>
+      <button class="greenmin">-</button>
+      <input class="greencolorvalue" type="range" value="255" min="0" max="255">
+      <button class="greenplus">+</button>
+      <span>255</span>
+      <span>|</span>
+      <span id="slidervaluegreen">255</span>
+    </div>
+  </div>
+
+  <!-- Blue Color -->
+  <div class="Blue">
+    <div class="colors">
+      <span style="margin: 0;">Blue:</span>
+      <span>0</span>
+      <button class="bluemin">-</button>
+      <input class="bluecolorvalue" type="range" value="255" min="0" max="255">
+      <button class="blueplus">+</button>
+      <span>255</span>
+      <span>|</span>
+      <span id="slidervalueblue">255</span>
+    </div>
+  </div>
+
+  <!-- Opacity -->
+  <div class="Blue">
+    <div class="colors">
+      <span style="margin: 0;">Opacity:</span>
+      <span>0</span>
+      <button class="opacitymin">-</button>
+      <input class="opacitycolorvalue" type="range" value="1000" min="0" max="1000">
+      <button class="opacityplus">+</button>
+      <span>1</span>
+      <span>|</span>
+      <span id="slidervalueopacity">1</span>
+    </div>
+  </div>
+  <br>
+
+  <!-- Guess button -->
+  <button id="guess">Guess</button>
+  <br>
+  <br>
+  <!-- Score -->
+  <div class="scorecss">Score:
+    <span class="score" id="score">0</span>
+  </div>
+  <br>
+  <!-- Next color -->
+  <button id="next">Next!</button>
+</body>
+
+
+<!-- javascript -->
+<script src="main.js"></script>
+</html>
