@@ -1,12 +1,17 @@
 'use strict';
+
+
+/* 
+Variables 
+*/
+
+
 // get the box element
 const box1 = document.querySelector('.boxOne');
 const box2 = document.querySelector('.boxTwo');
 
 // get the score element
 const score  = document.querySelector('.score');
-
-let totalscore = 300;
 
 // get the live value element 
 const slidertextred = document.getElementById('slidervaluered');
@@ -23,6 +28,19 @@ let slidervalueopacity = document.querySelector('.opacitycolorvalue');
 // the colors of the box1 
 let r,g,b;
 
+// opacity global value
+let opacity_value = slidervalueopacity.value;
+
+// a function to update the colors when they have to be updated for box2
+function updatebox2colors(r,g,b,o){
+  box2.style.backgroundColor = `rgb(${r}, ${g}, ${b}, ${o / 1000})`;
+}
+
+/* 
+Global Events
+*/
+
+
 // when page is loaded, change give the box1 a random color
 addEventListener('load', function (event) {
   r = Math.trunc(Math.random() * 256);
@@ -30,7 +48,25 @@ addEventListener('load', function (event) {
   b = Math.trunc(Math.random() * 256);
 
   box1.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-})
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
+});
+
+// change the color value when there is an input in the sliders
+addEventListener('input', function () {
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
+});
+
+// change the color when there is an change in an html
+addEventListener('change', function () {
+  slidervalueopacity.value = opacity_value;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
+});
+
+
+/* 
+Specific Events
+*/
+
 
 // take the value of the slider from the red color and change the value of the text on the right in the app
 slidervaluered.addEventListener('input', function (event) {
@@ -49,62 +85,61 @@ slidervalueblue.addEventListener('input', function (event) {
 
 // take the value of the slider from the blue color and change the value of the text on the right in the app
 slidervalueopacity.addEventListener('input', function (event) {
+  opacity_value = event.target.value;
   slidertextopacity.textContent = event.target.value / 1000;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
 });
 
 // change the value of the slider with the side buttons - and + red color
 document.querySelector('.redmin').addEventListener('click', function() {
-  let answer = slidervaluered.value -= 1;
-  slidertextred.textContent = answer;
-  console.log(slidervaluered.value); 
+  slidertextred.textContent = slidervaluered.value --;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
 });
 
 document.querySelector('.redplus').addEventListener('click', function() {
-  let answer = slidervaluered.value += 1;
-  slidertextred.textContent = answer;
-  console.log(slidervaluered.value); 
+  slidertextred.textContent = slidervaluered.value ++;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
 });
 
 // change the value of the slider with the side buttons - and + green color
 document.querySelector('.greenmin').addEventListener('click', function() {
-  console.log(slidervaluegreen.value);
-  slidertextgreen.textContent = slidervaluegreen.value -= 1;
+  slidertextgreen.textContent = slidervaluegreen.value --;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
 });
 
 document.querySelector('.greenplus').addEventListener('click', function() {
-  console.log(slidervaluegreen.value);
-  slidertextgreen.textContent = slidervaluegreen.value += 1;
+  slidertextgreen.textContent = slidervaluegreen.value ++;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
 });
 
 // change the value of the slider with the side buttons - and + blue color
 document.querySelector('.bluemin').addEventListener('click', function() {
-  console.log(slidervalueblue.value);
   slidertextblue.textContent = slidervalueblue.value --;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
 });
 
 document.querySelector('.blueplus').addEventListener('click', function() {
-  console.log(slidervalueblue.value);
   slidertextblue.textContent = slidervalueblue.value ++;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
 });
 
 // change the value of the slider with the side buttons - and + opacity color
 document.querySelector('.opacitymin').addEventListener('click', function() {
-  console.log(slidervalueopacity.value);
-  slidertextopacity.textContent = slidervalueopacity.value -- / 1000;
+  opacity_value --;
+  slidervalueopacity.value = opacity_value;
+  slidertextopacity.textContent = opacity_value / 1000;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
 });
 
 document.querySelector('.opacityplus').addEventListener('click', function() {
-  console.log(slidervalueopacity.value);
-  slidertextopacity.textContent = slidervalueopacity.value ++ / 1000;
+  opacity_value ++;
+  slidervalueopacity.value = opacity_value;
+  slidertextopacity.textContent = opacity_value / 1000;
+  updatebox2colors(slidervaluered.value, slidervaluegreen.value, slidervalueblue.value, opacity_value);
 });
 
 // get value of the backgroundcolor of the 
 // let box2bg = window.getComputedStyle(box2).backgroundColor;
-
-// change the color value when there is an input
-addEventListener('input', function (event) {
-  box2.style.backgroundColor = `rgb(${slidertextred.textContent}, ${slidertextgreen.textContent}, ${slidertextblue.textContent}, ${slidertextopacity.textContent})`;
-});
 
 // when clicked change the box1 color to a random color.
 document.querySelector('#next').addEventListener('click', function () {
@@ -117,13 +152,11 @@ document.querySelector('#next').addEventListener('click', function () {
 
 // when guess is clicked this checks if its the same as the random color.
 document.querySelector('#guess').addEventListener('click', function () {
-  if(r === slidervaluered.value && g === slidervaluegreen.value && b === slidervalueblue){
-    totalscore = 300;
-    score.textContent = totalscore;
-  }
-
-  score.textContent = 300;
-
+  if(r === slidervaluered.value){
+    let k = totalscore + (255/100*r)
+    console.log('this is k:' + k);
+    score.textContent = k;
+  } 
 
   console.log(r);
   console.log(g);

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>Geuss Color</title>
+  <title>Guess The Color</title>
 </head>
 <body>
 
@@ -31,25 +31,25 @@
       <span style="margin: 0;">Red:</span>
       <span>0</span>
       <button class="redmin">-</button>
-      <input class="redcolorvalue" type="range" value="255" min="0" max="255">
+      <input class="redcolorvalue" type="range" min="0" max="255">
       <button class="redplus">+</button>
       <span>255</span>
       <span>|</span>
-      <span id="slidervaluered">255</span>
+      <span id="slidervaluered"></span>
     </div>
   </div>
-
+  
   <!-- Green Color -->
   <div class="Green">
     <div class="colors">
       <span style="margin: 0;">Green:</span>
       <span>0</span>
       <button class="greenmin">-</button>
-      <input class="greencolorvalue" type="range" value="255" min="0" max="255">
+      <input class="greencolorvalue" type="range" min="0" max="255">
       <button class="greenplus">+</button>
       <span>255</span>
       <span>|</span>
-      <span id="slidervaluegreen">255</span>
+      <span id="slidervaluegreen" value="255"></span>
     </div>
   </div>
 
@@ -59,11 +59,11 @@
       <span style="margin: 0;">Blue:</span>
       <span>0</span>
       <button class="bluemin">-</button>
-      <input class="bluecolorvalue" type="range" value="255" min="0" max="255">
+      <input class="bluecolorvalue" type="range" min="0" max="255">
       <button class="blueplus">+</button>
       <span>255</span>
       <span>|</span>
-      <span id="slidervalueblue">255</span>
+      <span id="slidervalueblue"></span>
     </div>
   </div>
 
@@ -83,7 +83,7 @@
   <br>
 
   <!-- Guess button -->
-  <button id="guess">Guess</button>
+  <button id="guess" >Guess</button>
   <br>
   <br>
   <!-- Score -->
