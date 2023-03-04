@@ -168,9 +168,11 @@ document.querySelector('#guess').addEventListener('click', function () {
     scorecss.style.backgroundColor = 'green';
   }
   else if (finalscore >= 50 && finalscore <= 60) {
+    score.textContent = finalscore
     scorecss.style.backgroundColor = 'orange';
   }
   else if (finalscore < 50) {
+    score.textContent = finalscore
     scorecss.style.backgroundColor = 'red';
   }
 });
