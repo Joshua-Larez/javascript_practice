@@ -149,7 +149,6 @@ document.querySelector('#next').addEventListener('click', function () {
   b = Math.trunc(Math.random() * 256);
 
   box1.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-  console.log(window.getComputedStyle(box1).backgroundColor);
 });
 
 // when guess is clicked this checks if its the same as the random color.
@@ -174,6 +173,5 @@ document.querySelector('#guess').addEventListener('click', function () {
   else if (finalscore < 50) {
     scorecss.style.backgroundColor = 'red';
   }
-
 });
 
