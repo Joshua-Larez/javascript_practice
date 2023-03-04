@@ -28,7 +28,11 @@ h1, h2{
 }
 
 .scorecss{
+  width: 10%;
+  border-radius: .5rem;
+  padding: .5rem;
   color: white;
+  background-color: rgb(53, 53, 53);
 }
 
 .boxOne {

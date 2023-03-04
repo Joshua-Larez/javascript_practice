@@ -11,7 +11,8 @@ const box1 = document.querySelector('.boxOne');
 const box2 = document.querySelector('.boxTwo');
 
 // get the score element
-const score  = document.querySelector('.score');
+let score  = document.querySelector('.score');
+let scorecss = document.querySelector('.scorecss');
 
 // get the live value element 
 const slidertextred = document.getElementById('slidervaluered');
@@ -148,21 +149,31 @@ document.querySelector('#next').addEventListener('click', function () {
   b = Math.trunc(Math.random() * 256);
 
   box1.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+  console.log(window.getComputedStyle(box1).backgroundColor);
 });
 
 // when guess is clicked this checks if its the same as the random color.
+// credits to chatgpt for this formula for the guessing button. 
 document.querySelector('#guess').addEventListener('click', function () {
-  if(r === slidervaluered.value){
-    let k = totalscore + (255/100*r)
-    console.log('this is k:' + k);
-    score.textContent = k;
-  } 
+  const delta1 = Math.abs(r - slidervaluered.value);
+  const delta2 = Math.abs(g - slidervaluegreen.value);
+  const delta3 = Math.abs(b - slidervalueblue.value);
 
-  console.log(r);
-  console.log(g);
-  console.log(b);
-  console.log(slidervaluered.value);
-  console.log(slidervaluegreen.value);
-  console.log(slidervalueblue.value);
-  console.log(slidervalueopacity.value);
+  const total_delta = delta1 + delta2 + delta3;
+  const max_delta = 3 * 255; // max possible difference between sliders
+  let finalscore = Math.round((1 - total_delta / max_delta) * 100);
+
+  // color changes are all me.
+  if (finalscore >= 60) {
+    score.textContent = finalscore
+    scorecss.style.backgroundColor = 'green';
+  }
+  else if (finalscore >= 50 && finalscore <= 60) {
+    scorecss.style.backgroundColor = 'orange';
+  }
+  else if (finalscore < 50) {
+    scorecss.style.backgroundColor = 'red';
+  }
+
 });
+
